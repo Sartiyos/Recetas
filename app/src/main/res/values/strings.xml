@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Recetas</string>
+
+    <!-- Strings para el LoginActivity -->
+    <string name="email">Correo electrónico</string>
+    <string name="passwd">Contraseña</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="signin">Registrarse</string>
+
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="receta">Recetas</string>
+    <string name="buscar">Buscar</string>
+    <string name="favoritos">Favoritos</string>
+
+    <string name="construccion">ESTE APARTADO ESTA EN CONSTRUCCION</string>
+
 </resources>
