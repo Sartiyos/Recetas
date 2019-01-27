@@ -5,14 +5,25 @@
     <string name="email">Correo electrónico</string>
     <string name="passwd">Contraseña</string>
     <string name="login">Iniciar sesión</string>
-    <string name="signin">Registrarse</string>
+    <string name="signin">REGISTRARSE</string>
 
     <string name="title_activity_main">MainActivity</string>
 
     <string name="receta">Recetas</string>
     <string name="buscar">Buscar</string>
     <string name="favoritos">Favoritos</string>
+    <string name="ubicacion">Cocineros</string>
 
     <string name="construccion">ESTE APARTADO ESTA EN CONSTRUCCION</string>
+
+    <!-- String para el RegisterActivity -->
+    <string name="regUsuario">Usuario</string>
+    <string name="regPassword">Contraseña</string>
+    <string name="regNombre">Nombre</string>
+    <string name="regApellidos">Apellidos</string>
+    <string name="regFecha">Fecha de nacimiento</string>
+    <string name="regEmail">Correo electrónico</string>
+    <string name="regTelefono">Teléfono móvil</string>
+
 
 </resources>

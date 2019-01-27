@@ -15,5 +15,9 @@
         android:id="@+id/nav_fav"
         android:icon="@drawable/ic_favorite"
         android:title="@string/favoritos" />
+    <item
+        android:id="@+id/nav_ubi"
+        android:icon="@drawable/ic_cocineros"
+        android:title="@string/ubicacion" />
 
 </menu>
