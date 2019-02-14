@@ -5,19 +5,14 @@
         android:id="@+id/nav_recetas"
         android:icon="@drawable/ic_util"
         android:title="@string/receta" />
-
-    <item
-        android:id="@+id/nav_buscar"
-        android:icon="@drawable/ic_search"
-        android:title="@string/buscar" />
-
-    <item
-        android:id="@+id/nav_fav"
-        android:icon="@drawable/ic_favorite"
-        android:title="@string/favoritos" />
     <item
         android:id="@+id/nav_ubi"
         android:icon="@drawable/ic_cocineros"
         android:title="@string/ubicacion" />
+
+    <item
+        android:id="@+id/nav_perfil"
+        android:icon="@drawable/ic_perfil"
+        android:title="@string/perfil" />
 
 </menu>

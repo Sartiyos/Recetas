@@ -29,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText edtNombre;
     private EditText edtApellidos;
     private EditText edtFNacimiento;
-    private EditText edtEmail;
+    private EditText edtCorreo;
     private EditText edtTelefono;
     private Button   btnRegistrarse;
 
@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
         edtNombre      = (EditText) findViewById(R.id.edtNombre);
         edtApellidos   = (EditText) findViewById(R.id.edtApellido);
         edtFNacimiento = (EditText) findViewById(R.id.edtFecha);
-        edtEmail       = (EditText) findViewById(R.id.edtEmail);
+        edtCorreo      = (EditText) findViewById(R.id.edtCorreo);
         edtTelefono    = (EditText) findViewById(R.id.edtTelefono);
         btnRegistrarse = (Button) findViewById(R.id.btnRegistrar);
 
@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
         String nombre    = edtNombre.getText().toString();
         String apellidos = edtApellidos.getText().toString();
         String fecha     = edtFNacimiento.getText().toString();
-        String email     = edtEmail.getText().toString();
+        String email     = edtCorreo.getText().toString();
         String telefono  = edtTelefono.getText().toString();
 
         if(usuario.isEmpty() || password.isEmpty() || nombre.isEmpty() || apellidos.isEmpty() ||
@@ -84,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
             int telf = Integer.parseInt(telefono);
 
             // Creamos un string con el url del servidor con los datos del nuevo usuario
-            String url = "http://192.168.1.142/recetas/registro.php?usuario=" + usuario +
+            String url = "http://192.168.1.113/recetas/registro.php?usuario=" + usuario +
                     "&clave=" + password + "&nombre=" + nombre + "&apellidos=" + apellidos +
                     "&fNacimiento=" + fecha + "&email=" + email + "&telefono=" + telf +
                     "&foto=null";

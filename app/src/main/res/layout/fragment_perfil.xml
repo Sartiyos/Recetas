@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimary"
-    tools:context=".actividades.RegisterActivity">
+    tools:context=".fragmentos.PerfilFragment">
 
     <LinearLayout
         android:id="@+id/contenedor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:padding="20dp"
-        android:orientation="vertical"
         android:background="@drawable/redondeo"
+        android:orientation="vertical"
+        android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            tools:src="@drawable/ic_chef" />
 
         <TextView
             android:id="@+id/textView4"
@@ -33,11 +41,12 @@
             app:fontFamily="@font/karla" />
 
         <EditText
-            android:id="@+id/edtUsuario"
+            android:id="@+id/edtUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/campos"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/campos"
+            android:editable="false"
             android:ems="10"
             android:hint="@string/regUsuario"
             android:inputType="textPersonName" />
@@ -50,11 +59,11 @@
             app:fontFamily="@font/karla" />
 
         <EditText
-            android:id="@+id/edtPassword"
+            android:id="@+id/edtPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/campos"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/campos"
             android:ems="10"
             android:hint="@string/regPassword"
             android:inputType="textPassword" />
@@ -67,11 +76,11 @@
             app:fontFamily="@font/karla" />
 
         <EditText
-            android:id="@+id/edtNombre"
+            android:id="@+id/edtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/campos"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/campos"
             android:ems="10"
             android:hint="@string/regNombre"
             android:inputType="textPersonName" />
@@ -84,11 +93,11 @@
             app:fontFamily="@font/karla" />
 
         <EditText
-            android:id="@+id/edtApellido"
+            android:id="@+id/edtLastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/campos"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/campos"
             android:ems="10"
             android:hint="@string/regApellidos"
             android:inputType="textPersonName" />
@@ -101,11 +110,11 @@
             app:fontFamily="@font/karla" />
 
         <EditText
-            android:id="@+id/edtFecha"
+            android:id="@+id/edtBirthdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/campos"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/campos"
             android:ems="10"
             android:hint="@string/regFecha"
             android:inputType="date" />
@@ -118,7 +127,7 @@
             app:fontFamily="@font/karla" />
 
         <EditText
-            android:id="@+id/edtCorreo"
+            android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -135,22 +144,23 @@
             app:fontFamily="@font/karla" />
 
         <EditText
-            android:id="@+id/edtTelefono"
+            android:id="@+id/edtTelephone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/campos"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/campos"
             android:ems="10"
             android:hint="@string/regTelefono"
             android:inputType="phone" />
 
         <Button
-            android:id="@+id/btnRegistrar"
+            android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:text="@string/btnSave"
             android:background="@drawable/botones"
-            android:text="@string/signin"
             android:textColor="@android:color/white" />
+
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

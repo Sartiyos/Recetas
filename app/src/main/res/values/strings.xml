@@ -10,9 +10,8 @@
     <string name="title_activity_main">MainActivity</string>
 
     <string name="receta">Recetas</string>
-    <string name="buscar">Buscar</string>
-    <string name="favoritos">Favoritos</string>
     <string name="ubicacion">Cocineros</string>
+    <string name="perfil">Perfil</string>
 
     <string name="construccion">ESTE APARTADO ESTA EN CONSTRUCCION</string>
 
@@ -24,6 +23,12 @@
     <string name="regFecha">Fecha de nacimiento</string>
     <string name="regEmail">Correo electrónico</string>
     <string name="regTelefono">Teléfono móvil</string>
+
+    <!-- String para botones -->
+    <string name="btnSave">Guardar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

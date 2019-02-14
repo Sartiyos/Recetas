@@ -1,17 +1,15 @@
 package com.miguelbd.recetas.actividades;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.miguelbd.recetas.fragmentos.PerfilFragment;
 import com.miguelbd.recetas.R;
-import com.miguelbd.recetas.fragmentos.BuscarFragment;
 import com.miguelbd.recetas.fragmentos.CocinerosFragment;
-import com.miguelbd.recetas.fragmentos.FavoritoFragment;
 import com.miguelbd.recetas.fragmentos.RecetasFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,18 +27,14 @@ public class MainActivity extends AppCompatActivity {
         //Creamos una escucha para comprobar si se ha pulsado sobre él
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
                 Fragment fragment = null;
                 switch (menuItem.getItemId()) {
                     case R.id.nav_recetas:
                         fragment = new RecetasFragment();
                         break;
-
-                    case R.id.nav_buscar:
-                        fragment = new BuscarFragment();
-                        break;
-                    case R.id.nav_fav:
-                        fragment = new FavoritoFragment();
+                    case R.id.nav_perfil:
+                        fragment = new PerfilFragment();
                         break;
                     case R.id.nav_ubi:
                         fragment = new CocinerosFragment();

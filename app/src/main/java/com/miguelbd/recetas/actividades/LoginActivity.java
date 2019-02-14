@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         else {
             // Creamos un string con el url del servidor con los datos usuario
-            String url = "http://192.168.1.142/recetas/login.php?usuario=" + usuario + "&clave=" + password;
+            String url = "http://192.168.1.113/recetas/login.php?usuario=" + usuario + "&clave=" + password;
 
             jsonObjectRequest = new JsonObjectRequest
                     (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
