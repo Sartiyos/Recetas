@@ -44,7 +44,7 @@ public class DatabaseAccess {
     // METODOS PROPIOS------------------------------------------------------------------------------
 
     // Método que nos devuelve todas las recetas
-    public ArrayList<Receta> obtenerReceta(int valor) {
+    public ArrayList<Receta> obtenerReceta() {
         Cursor c;
         ArrayList<Receta> listadoRecetas = new ArrayList<>();
 

@@ -84,9 +84,13 @@ public class RegisterActivity extends AppCompatActivity {
             int telf = Integer.parseInt(telefono);
 
             // Creamos un string con el url del servidor con los datos del nuevo usuario
-            String url = "http://192.168.1.113/recetas/registro.php?usuario=" + usuario +
-                    "&clave=" + password + "&nombre=" + nombre + "&apellidos=" + apellidos +
-                    "&fNacimiento=" + fecha + "&email=" + email + "&telefono=" + telf +
+            String url = "http://192.168.1.141/recetas/registro.php?usuario=" + usuario +
+                    "&clave=" + password +
+                    "&nombre=" + nombre +
+                    "&apellidos=" + apellidos +
+                    "&fNacimiento=" + fecha +
+                    "&email=" + email +
+                    "&telefono=" + telf +
                     "&foto=null";
 
             // Reemplazamos los espacios por el %20

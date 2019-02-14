@@ -2,25 +2,41 @@ package com.miguelbd.recetas.actividades;
 
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.miguelbd.recetas.clases.Usuario;
 import com.miguelbd.recetas.fragmentos.PerfilFragment;
 import com.miguelbd.recetas.R;
 import com.miguelbd.recetas.fragmentos.CocinerosFragment;
 import com.miguelbd.recetas.fragmentos.RecetasFragment;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity {
 
     //Objetos con los que identificaremos a los componentes del XML
     private BottomNavigationView navigation;
+    private String usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        usuario = getIntent().getStringExtra("usuario");
 
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
 
@@ -28,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
+                Bundle args = new Bundle();
+                args.putString("user", usuario);
                 Fragment fragment = null;
                 switch (menuItem.getItemId()) {
                     case R.id.nav_recetas:
@@ -35,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_perfil:
                         fragment = new PerfilFragment();
+                        fragment.setArguments(args);
                         break;
                     case R.id.nav_ubi:
                         fragment = new CocinerosFragment();
@@ -62,5 +81,4 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.contenedor, fragment);
         fragmentTransaction.commit();
     }
-
 }

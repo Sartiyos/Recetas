@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
     private void cargarWebService(View v) {
         final View view = v;
 
-        String usuario  = edtUsuario.getText().toString();
+        final String usuario  = edtUsuario.getText().toString();
         String password = edtPassword.getText().toString();
 
         // Comprobamos que los campos no están vacíos
@@ -77,14 +77,15 @@ public class LoginActivity extends AppCompatActivity {
         }
         else {
             // Creamos un string con el url del servidor con los datos usuario
-            String url = "http://192.168.1.113/recetas/login.php?usuario=" + usuario + "&clave=" + password;
+            String url = "http://192.168.1.141/recetas/login.php?usuario=" + usuario + "&clave=" + password;
 
-            jsonObjectRequest = new JsonObjectRequest
-                    (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                        // Método que no muestra en caso de que la respuesta este correcta
+            jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                        // Método que nos muestra en caso de que la respuesta este correcta
                         @Override
                         public void onResponse(JSONObject response) {
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.putExtra("usuario", usuario);
                             startActivity(intent);
                         }
                     }, new Response.ErrorListener() {

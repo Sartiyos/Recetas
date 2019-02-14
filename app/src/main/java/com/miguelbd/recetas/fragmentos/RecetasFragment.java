@@ -48,7 +48,7 @@ public class RecetasFragment extends Fragment {
         databaseAccess.open();
 
         //Obtenemos todas las recetas de los platos principales
-        listadoPlatos = databaseAccess.obtenerReceta(1);
+        listadoPlatos = databaseAccess.obtenerReceta();
 
         //Cerramos la conexión con la Base de Datos
         databaseAccess.close();

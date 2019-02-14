@@ -27,6 +27,12 @@
     <!-- String para botones -->
     <string name="btnSave">Guardar</string>
 
+    <!-- String para el FragmentPerfil -->
+    <string name="bienvenido">Bienvenido/a</string>
+    <string name="cmbPass">Cambiar contraseña</string>
+    <string name="cmbDatos">Cambiar mis datos</string>
+    <string name="cmbLogout">Cerrar sesión</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
