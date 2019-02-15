@@ -18,6 +18,7 @@ import com.android.volley.toolbox.Volley;
 import com.miguelbd.recetas.R;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Date;
@@ -84,8 +85,8 @@ public class RegisterActivity extends AppCompatActivity {
             int telf = Integer.parseInt(telefono);
 
             // Creamos un string con el url del servidor con los datos del nuevo usuario
-            String url = "http://192.168.1.141/recetas/registro.php?usuario=" + usuario +
-                    "&clave=" + password +
+            String url = "http://192.168.1.113/recetas/api.php?username=" + usuario +
+                    "&password=" + password +
                     "&nombre=" + nombre +
                     "&apellidos=" + apellidos +
                     "&fNacimiento=" + fecha +
@@ -98,10 +99,26 @@ public class RegisterActivity extends AppCompatActivity {
 
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                     (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
                         @Override
                         public void onResponse(JSONObject response) {
-                            Toast.makeText(getApplicationContext(), "Registro completado", Toast.LENGTH_SHORT).show();
-                            finish();
+
+                            try {
+                                String respuesta = response.getString("respuesta");
+                                switch (respuesta) {
+                                    case "REGISTRO OK": {
+                                        Toast.makeText(getApplicationContext(), "Registro completado", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                        break;
+                                    }
+                                    case "REGISTRO DOBLE": {
+                                        Toast.makeText(getApplicationContext(), "Ya existe un usuario", Toast.LENGTH_SHORT).show();
+                                        break;
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }, new Response.ErrorListener() {
 

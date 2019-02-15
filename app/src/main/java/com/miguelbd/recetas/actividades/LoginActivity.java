@@ -19,6 +19,7 @@ import com.android.volley.toolbox.Volley;
 import com.miguelbd.recetas.R;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
@@ -76,19 +77,43 @@ public class LoginActivity extends AppCompatActivity {
             Snackbar.make(view, "Los campos no pueden estar vacíos", Snackbar.LENGTH_LONG).show();
         }
         else {
+
             // Creamos un string con el url del servidor con los datos usuario
-            String url = "http://192.168.1.141/recetas/login.php?usuario=" + usuario + "&clave=" + password;
+            String url = "http://192.168.1.113/recetas/api.php?username=" + usuario + "&password=" + password;
 
             jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
                         // Método que nos muestra en caso de que la respuesta este correcta
                         @Override
                         public void onResponse(JSONObject response) {
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            intent.putExtra("usuario", usuario);
-                            startActivity(intent);
+
+                            try {
+                                // Guardamos la respuesta recibida
+                                String respuesta = response.getString("respuesta");
+
+                                // Comparamos el valor de la respuesta
+                                switch (respuesta) {
+                                    case "OK": {
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        intent.putExtra("usuario", usuario);
+                                        startActivity(intent);
+                                        break;
+                                    }
+                                    case "ERROR": {
+                                        Snackbar.make(view, "Error al iniciar sesión", Snackbar.LENGTH_LONG).show();
+                                        break;
+                                    }
+                                    case "ERROR404": {
+                                        Snackbar.make(view, "No existe el usuario", Snackbar.LENGTH_LONG).show();
+                                        break;
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }, new Response.ErrorListener() {
+
+                        }, new Response.ErrorListener() {
                         // Método que nos muestra en caso de error
                         @Override
                         public void onErrorResponse(VolleyError error) {
