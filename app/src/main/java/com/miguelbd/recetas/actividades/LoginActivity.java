@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         else {
 
             // Creamos un string con el url del servidor con los datos usuario
-            String url = "http://192.168.1.100/recetas/api.php?username=" + usuario + "&password=" + password;
+            String url = "http://192.168.1.52/recetas/api.php?username=" + usuario + "&password=" + password;
 
             jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
@@ -94,6 +94,8 @@ public class LoginActivity extends AppCompatActivity {
                                 // Comparamos el valor de la respuesta
                                 switch (respuesta) {
                                     case "OK": {
+                                        edtUsuario.setText("");
+                                        edtPassword.setText("");
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                         intent.putExtra("usuario", usuario);
                                         startActivity(intent);

@@ -85,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
             int telf = Integer.parseInt(telefono);
 
             // Creamos un string con el url del servidor con los datos del nuevo usuario
-            String url = "http://192.168.1.100/recetas/api.php?username=" + usuario +
+            String url = "http://192.168.1.52/recetas/api.php?username=" + usuario +
                     "&password=" + password +
                     "&nombre=" + nombre +
                     "&apellidos=" + apellidos +
@@ -96,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
             // Reemplazamos los espacios por el %20
             url = url.replace(" ", "%20");
 
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+            jsonObjectRequest = new JsonObjectRequest
                     (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
                         @Override

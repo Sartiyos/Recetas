@@ -15,6 +15,10 @@ public class Usuario {
 
     // Constructor de la clase
 
+    public Usuario() {
+
+    }
+
     public Usuario(String usuario, String password, String nombre, String apellidos, String fecha, String email, String telefono, String foto) {
         this.usuario = usuario;
         this.password = password;

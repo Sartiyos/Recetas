@@ -6,19 +6,23 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.miguelbd.recetas.R;
+import com.miguelbd.recetas.clases.Usuario;
 
 public class PasswordDialog {
 
+    private Button btnCambiar;
+
     //Creamos una interfaz
     public interface interfacePasswordDialog {
-        void llamarDialogoCliente(String oldPass, String newPass, String newPass2);
+        void llamarDialogoPassword(String newPass);
     }
 
     private interfacePasswordDialog interfaz;
 
-    public PasswordDialog(final Context context, interfacePasswordDialog actividad) {
+    public PasswordDialog(final Context context, interfacePasswordDialog actividad, final Usuario usuario) {
 
         interfaz = actividad;
 
@@ -32,7 +36,7 @@ public class PasswordDialog {
         final EditText edtNewPass   = (EditText)dialogo.findViewById(R.id.edtNewPass);
         final EditText edtNewPass2  = (EditText)dialogo.findViewById(R.id.edtNewPass2);
 
-        Button btnCambiar = (Button)dialogo.findViewById(R.id.btnCambiar);
+        btnCambiar = (Button)dialogo.findViewById(R.id.btnCambiar);
 
         //Creamos una escucha para el Botón Cambiar
         btnCambiar.setOnClickListener(new View.OnClickListener() {
@@ -44,12 +48,18 @@ public class PasswordDialog {
 
                 //En caso de estar los campos vacíos nos saltará un aviso
                 if(oldPass.isEmpty() || newPass.isEmpty() || newPass2.isEmpty()) {
-                    Snackbar.make(view, "Debe rellenar todos los campos", Snackbar.LENGTH_LONG)
-                            .show();
-                }
-                else {
-                    interfaz.llamarDialogoCliente(oldPass, newPass, newPass2);
-                    dialogo.dismiss();
+                    Toast.makeText(view.getContext(), "Los campos no pueden estar vacios", Toast.LENGTH_SHORT).show();
+                } else {
+                    if(oldPass.equals(usuario.getPassword())) {
+                        if(newPass.equals(newPass2)) {
+                            interfaz.llamarDialogoPassword(newPass);
+                            dialogo.dismiss();
+                        } else {
+                            Toast.makeText(view.getContext(), "La nueva contraseña no coincide", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(view.getContext(), "La antigua contraseña no es esa", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

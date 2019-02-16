@@ -31,7 +31,12 @@
     <string name="bienvenido">Bienvenido/a</string>
     <string name="cmbPass">Cambiar contraseña</string>
     <string name="cmbDatos">Cambiar mis datos</string>
-    <string name="cmbLogout">Cerrar sesión</string>
+    <string name="borrarCuenta">Borrar mi cuenta</string>
+
+    <!-- String para modificar contraseña -->
+    <string name="oldPass">Antigua contraseña</string>
+    <string name="newPass">Nueva contraseña</string>
+    <string name="newPass2">Repite nueva contraseña</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
