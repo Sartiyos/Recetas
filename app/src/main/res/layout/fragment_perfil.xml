@@ -20,10 +20,11 @@
 
         <ImageView
             android:id="@+id/imgImagen"
-            android:layout_gravity="center"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            tools:src="@tools:sample/avatars" />
+            android:layout_gravity="center"
+            tools:src="@tools:sample/avatars"
+            tools:srcCompat="@drawable/ic_chef" />
 
         <TextView
             android:id="@+id/textView"
