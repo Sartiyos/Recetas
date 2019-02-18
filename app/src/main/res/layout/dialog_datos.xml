@@ -19,42 +19,62 @@
         android:padding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498">
 
         <EditText
-            android:id="@+id/edtOldPass"
+            android:id="@+id/edtNewNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:ems="10"
-            android:hint="@string/oldPass"
+            android:hint="@string/regNombre"
             android:inputType="none" />
 
         <EditText
-            android:id="@+id/edtNewPass"
+            android:id="@+id/edtNewApellidos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:ems="10"
-            android:hint="@string/newPass"
+            android:hint="@string/regApellidos"
             android:inputType="none" />
 
         <EditText
-            android:id="@+id/edtNewPass2"
+            android:id="@+id/edtNewEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:hint="@string/regEmail"
+            android:inputType="none" />
+
+        <EditText
+            android:id="@+id/edtNewFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:hint="@string/regFecha"
+            android:inputType="none" />
+
+        <EditText
+            android:id="@+id/edtNewTelefono"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:ems="10"
-            android:hint="@string/newPass2"
+            android:hint="@string/regTelefono"
             android:inputType="none" />
 
         <Button
-            android:id="@+id/btnCambiar"
+            android:id="@+id/btnModificar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorBtnPulsado"
-            android:text="Cambiar contraseña"
+            android:text="@string/btnModificar"
             android:textColor="@android:color/white" />
     </LinearLayout>
 

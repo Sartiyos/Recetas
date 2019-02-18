@@ -23,48 +23,48 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            tools:src="@tools:sample/avatars"
-            tools:srcCompat="@drawable/ic_chef" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@color/colorPrimaryDark"
-            android:padding="4dp"
-            android:text="@string/bienvenido" />
+            app:srcCompat="@drawable/ic_chef" />
 
         <TextView
             android:id="@+id/txtUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:padding="8dp"
-            android:text="@string/regUsuario" />
+            android:text="@string/regUsuario"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@color/colorPrimaryDark"
+            android:padding="8dp"
+            android:text="@string/configuracion"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/txtCmbPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorBtnPulsado"
             android:padding="8dp"
-            android:text="@string/cmbPass" />
+            android:text="@string/cmbPass"
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/txtCmbDatos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorBtnPulsado"
             android:padding="8dp"
-            android:text="@string/cmbDatos" />
-
-        <TextView
-            android:id="@+id/txtLogout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:padding="8dp"
-            android:text="@string/borrarCuenta" />
+            android:text="@string/cmbDatos"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 

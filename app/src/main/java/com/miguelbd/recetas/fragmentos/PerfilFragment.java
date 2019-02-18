@@ -1,6 +1,7 @@
 package com.miguelbd.recetas.fragmentos;
 
-import android.content.Intent;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -19,38 +20,40 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.miguelbd.recetas.R;
-import com.miguelbd.recetas.actividades.LoginActivity;
-import com.miguelbd.recetas.actividades.MainActivity;
 import com.miguelbd.recetas.clases.Usuario;
+import com.miguelbd.recetas.dialogos.DatosDialog;
 import com.miguelbd.recetas.dialogos.PasswordDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-public class PerfilFragment extends Fragment implements PasswordDialog.interfacePasswordDialog {
+public class PerfilFragment extends Fragment implements PasswordDialog.interfacePasswordDialog, DatosDialog.interfaceDatosDialog {
 
+    // Objetos necesarios para el XML
     private ImageView imgImagen;
+    private TextView  txtUser;
     private TextView  txtCmbPass;
     private TextView  txtCmbDatos;
-    private TextView  txtUser;
 
-    private View view;
-
-    Usuario usuario;
+    // Objetos necesarios
+    private View    view;
+    private Usuario usuario;
 
     // Atributos para la conexión del web service
-    RequestQueue request;
-    JsonArrayRequest jsonArrayRequest;
-    JsonObjectRequest jsonObjectRequest;
+    private RequestQueue      request;
+    private JsonArrayRequest  jsonArrayRequest;
+    private JsonObjectRequest jsonObjectRequest;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        // Inflamos la vista
         view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
         request = Volley.newRequestQueue(getContext());
+
+        // Identificamos los objetos del XML
         imgImagen   = (ImageView) view.findViewById(R.id.imgImagen);
         txtUser     = (TextView)  view.findViewById(R.id.txtUser);
         txtCmbPass  = (TextView)  view.findViewById(R.id.txtCmbPass);
@@ -64,6 +67,13 @@ public class PerfilFragment extends Fragment implements PasswordDialog.interface
             @Override
             public void onClick(View v) {
                 new PasswordDialog(getContext(), PerfilFragment.this, usuario);
+            }
+        });
+
+        txtCmbDatos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatosDialog(getContext(), PerfilFragment.this, usuario);
             }
         });
 
@@ -87,6 +97,7 @@ public class PerfilFragment extends Fragment implements PasswordDialog.interface
 
                     // Convertimos el JSONArray en un JSONObjet
                     JSONObject objeto = response.getJSONObject(0);
+
                     // Obtenemos todos los datos del usuario
                     String user = objeto.getString("username");
                     String pass = objeto.getString("password");
@@ -121,6 +132,17 @@ public class PerfilFragment extends Fragment implements PasswordDialog.interface
         actualizarDatos();
     }
 
+    @Override
+    public void llamarDialogoDatos(String n, String a, String e, String f, String t) {
+        usuario.setNombre(n);
+        usuario.setApellidos(a);
+        usuario.setEmail(e);
+        usuario.setFecha(f);
+        usuario.setTelefono(t);
+        actualizarDatos();
+    }
+
+    // Método para actualizar los datos del usuario en la base de datos externa
     public void actualizarDatos() {
 
         // Creamos un string con el url del servidor con los datos usuario para actualizarlo
@@ -166,4 +188,45 @@ public class PerfilFragment extends Fragment implements PasswordDialog.interface
                 });
             request.add(jsonObjectRequest);
         }
+
+    // Método para eliminar la cuenta
+    public void eliminarCuenta() {
+
+        // Creamos un string con el url del servidor con los datos usuario para actualizarlo
+        String url = "http://192.168.1.52/recetas/api.php?username=" + usuario.getUsuario();
+
+        // Reemplazamos los espacios por el %20
+        url = url.replace(" ", "%20");
+
+        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    String respuesta = response.getString("respuesta");
+                    switch (respuesta) {
+                        case "1": {
+                            Toast.makeText(getContext(), "Datos actualizado", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        case "0": {
+                            Toast.makeText(getContext(), "Ha ocurrido un error al actualizar los datos", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Snackbar.make(view, "Error al actualizar", Snackbar.LENGTH_LONG).show();
+            }
+        });
+        request.add(jsonObjectRequest);
+    }
+
 }

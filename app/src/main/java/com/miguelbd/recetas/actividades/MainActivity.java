@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -27,8 +28,9 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Objetos con los que identificaremos a los componentes del XML
+    // Objetos con los que identificaremos a los componentes del XML
     private BottomNavigationView navigation;
+    private Toolbar toolbar;
     private String usuario;
 
     @Override
@@ -36,9 +38,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Recibimos el nombre del usuario logeado
         usuario = getIntent().getStringExtra("usuario");
 
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        //toolbar    = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         //Creamos una escucha para comprobar si se ha pulsado sobre él
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
