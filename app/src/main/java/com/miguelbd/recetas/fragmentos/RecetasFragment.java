@@ -106,24 +106,31 @@ public class RecetasFragment extends Fragment implements FiltroDialog.interfaceF
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(getContext());
         databaseAccess.open();
 
-        //Obtenemos todas las recetas de los platos principales
-        listadoPlatos = databaseAccess.obtenerRecetaFiltro(r);
+        if(r != "Todas") {
 
-        //Cerramos la conexión con la Base de Datos
-        databaseAccess.close();
+            //Obtenemos todas las recetas de los platos principales
+            listadoPlatos = databaseAccess.obtenerRecetaFiltro(r);
 
-        adaptadorPrincipal = new Adaptador(listadoPlatos);
-        adaptadorPrincipal.setOnClicListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), PdfActivity.class);
-                intent.putExtra("receta",
-                        listadoPlatos.get(viewPlatos.getChildAdapterPosition(view)).getPdfReceta());
-                startActivity(intent);
-            }
-        });
+            //Cerramos la conexión con la Base de Datos
+            databaseAccess.close();
 
-        //Hacemos que el adaptador se cargue en el RecyclerView
-        viewPlatos.setAdapter(adaptadorPrincipal);
+            adaptadorPrincipal = new Adaptador(listadoPlatos);
+            adaptadorPrincipal.setOnClicListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getContext(), PdfActivity.class);
+                    intent.putExtra("receta",
+                            listadoPlatos.get(viewPlatos.getChildAdapterPosition(view)).getPdfReceta());
+                    startActivity(intent);
+                }
+            });
+
+            //Hacemos que el adaptador se cargue en el RecyclerView
+            viewPlatos.setAdapter(adaptadorPrincipal);
+        }
+
+        else {
+            cargarAdaptador();
+        }
     }
 }

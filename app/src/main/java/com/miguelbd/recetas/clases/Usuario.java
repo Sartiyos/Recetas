@@ -12,11 +12,21 @@ public class Usuario {
     private String email;
     private String telefono;
     private String foto;
+    private double longitud;
+    private double latitud;
 
     // Constructor de la clase
 
     public Usuario() {
 
+    }
+
+    public Usuario(String usuario, Double longitud, Double latitud, String email, String telefono) {
+        this.usuario = usuario;
+        this.longitud = longitud;
+        this.latitud = latitud;
+        this.email = email;
+        this.telefono = telefono;
     }
 
     public Usuario(String usuario, String password, String nombre, String apellidos, String fecha, String email, String telefono, String foto) {
@@ -90,5 +100,21 @@ public class Usuario {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
+
+    public double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
     }
 }

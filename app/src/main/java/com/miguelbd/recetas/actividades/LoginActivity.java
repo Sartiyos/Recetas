@@ -44,9 +44,9 @@ public class LoginActivity extends AppCompatActivity {
         final InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
 
         // Relacionamos los atributos con los elementos del XML
-        edtUsuario = (EditText) findViewById(R.id.edtUser);
-        edtPassword = (EditText) findViewById(R.id.edtPasswd);
-        btnLogin = (Button) findViewById(R.id.btnLogin);
+        edtUsuario     = (EditText) findViewById(R.id.edtUser);
+        edtPassword    = (EditText) findViewById(R.id.edtPasswd);
+        btnLogin       = (Button)   findViewById(R.id.btnLogin);
         txtRegistrarse = (TextView) findViewById(R.id.txtRegistrar);
 
         request = Volley.newRequestQueue(this);
@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         final View view = v;
 
         final String usuario  = edtUsuario.getText().toString();
-        String password = edtPassword.getText().toString();
+        String password       = edtPassword.getText().toString();
 
         // Comprobamos que los campos no están vacíos
         if(usuario.isEmpty() || password.isEmpty()) {
@@ -96,45 +96,45 @@ public class LoginActivity extends AppCompatActivity {
 
             jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
-                        // Método que nos muestra en caso de que la respuesta este correcta
-                        @Override
-                        public void onResponse(JSONObject response) {
+                // Método que nos muestra en caso de que la respuesta este correcta
+                @Override
+                public void onResponse(JSONObject response) {
 
-                            try {
-                                // Guardamos la respuesta recibida
-                                String respuesta = response.getString("respuesta");
+                    try {
+                        // Guardamos la respuesta recibida
+                        String respuesta = response.getString("respuesta");
 
-                                // Comparamos el valor de la respuesta
-                                switch (respuesta) {
-                                    case "OK": {
-                                        edtUsuario.setText("");
-                                        edtPassword.setText("");
-                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                        intent.putExtra("usuario", usuario);
-                                        startActivity(intent);
-                                        break;
-                                    }
-                                    case "ERROR": {
-                                        Snackbar.make(view, "Error al iniciar sesión", Snackbar.LENGTH_LONG).show();
-                                        break;
-                                    }
-                                    case "ERROR404": {
-                                        Snackbar.make(view, "No existe el usuario", Snackbar.LENGTH_LONG).show();
-                                        break;
-                                    }
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                        // Comparamos el valor de la respuesta
+                        switch (respuesta) {
+                            case "OK": {
+                                edtUsuario.setText("");
+                                edtPassword.setText("");
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                intent.putExtra("usuario", usuario);
+                                startActivity(intent);
+                                break;
+                            }
+                            case "ERROR": {
+                                Snackbar.make(view, "Error al iniciar sesión", Snackbar.LENGTH_LONG).show();
+                                break;
+                            }
+                            case "ERROR404": {
+                                Snackbar.make(view, "No existe el usuario", Snackbar.LENGTH_LONG).show();
+                                break;
                             }
                         }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
 
-                        }, new Response.ErrorListener() {
-                        // Método que nos muestra en caso de error
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Snackbar.make(view, "Error al iniciar sesión", Snackbar.LENGTH_LONG).show();
-                        }
-                    });
+                }, new Response.ErrorListener() {
+                    // Método que nos muestra en caso de error
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Snackbar.make(view, "Error al iniciar sesión", Snackbar.LENGTH_LONG).show();
+                    }
+            });
             request.add(jsonObjectRequest);
         }
     }

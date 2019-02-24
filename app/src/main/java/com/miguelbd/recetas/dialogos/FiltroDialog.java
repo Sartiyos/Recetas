@@ -54,6 +54,11 @@ public class FiltroDialog {
                     interfaz.llamarDialogoFiltro(r);
                     dialogo.dismiss();
                 }
+                else {
+                    r = "Todas";
+                    interfaz.llamarDialogoFiltro(r);
+                    dialogo.dismiss();
+                }
             }
         });
 

@@ -8,13 +8,12 @@
     <string name="signin">REGISTRARSE</string>
 
     <string name="title_activity_main">MainActivity</string>
-    <string name="mFiltro">Filtrar</string>
 
+    <!-- String para el MainActivity -->
+    <string name="mFiltro">Filtrar</string>
     <string name="receta">Recetas</string>
     <string name="ubicacion">Cocineros</string>
     <string name="perfil">Perfil</string>
-
-    <string name="construccion">ESTE APARTADO ESTA EN CONSTRUCCION</string>
 
     <!-- String para el RegisterActivity -->
     <string name="regUsuario">Usuario</string>
@@ -24,8 +23,6 @@
     <string name="regFecha">Fecha de nacimiento</string>
     <string name="regEmail">Correo electrónico</string>
     <string name="regTelefono">Teléfono móvil</string>
-
-    <!-- String para botones -->
     <string name="btnSave">Guardar</string>
 
     <!-- String para el FragmentPerfil -->
@@ -43,5 +40,8 @@
     <string name="recPrincipal">Plato principal</string>
     <string name="recPostre">Postre</string>
     <string name="btnAceptar">Aceptar</string>
+
+    <!-- String para recetas -->
+    <string name="recDificultad">Dificultad</string>
 
 </resources>

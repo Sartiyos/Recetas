@@ -44,25 +44,29 @@ public class CocinerosFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
     private SupportMapFragment mapFragment;
 
-    private double longitude = 0.0;
-    private double latitude = 0.0;
+    private double longitude;
+    private double latitude;
 
     private String nombreUsuario;
 
     // Atributos para la conexión del web service
     private RequestQueue      request;
     private JsonObjectRequest jsonObjectRequest;
+    private JsonArrayRequest  jsonArrayRequest;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        // Ocultamos el toolbar
-        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
-
         // Inflamos la vista del fragment
         view = inflater.inflate(R.layout.fragment_cocineros, container, false);
 
+        // Ocultamos el toolbar
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+
         request = Volley.newRequestQueue(getContext());
+
+        // Obtenemos el nombre del usuario desde el MainActivity
+        nombreUsuario = getArguments().getString("user");
 
         // Instanciamos el mapa
         mapFragment = SupportMapFragment.newInstance();
@@ -71,7 +75,7 @@ public class CocinerosFragment extends Fragment implements OnMapReadyCallback {
         //Cargamos el mapa en el fragment map
         getChildFragmentManager().beginTransaction().replace(R.id.map, mapFragment).commit();
 
-        nombreUsuario = getArguments().getString("user");
+
 
         return view;
     }
@@ -99,6 +103,15 @@ public class CocinerosFragment extends Fragment implements OnMapReadyCallback {
 
             // Actualizamos los datos del usuario en la base de datos externa
             actualizarDatosGPS(nombreUsuario);
+
+            obtenerUbicacionChefs(mMap);
+            // Mostramos en el mapa la ubicación de los demás usuarios
+            /*for(int i = 0; i < usuario.length; i++) {
+                if(usuario[i].getUsuario() != nombreUsuario) {
+                    ubi = new LatLng(usuario[i].getLatitud(), usuario[i].getLongitud());
+                    googleMap.addMarker(new MarkerOptions().position(ubi).title("Chef " + usuario[i].getUsuario()));
+                }
+            }*/
 
         }
     }
@@ -143,5 +156,54 @@ public class CocinerosFragment extends Fragment implements OnMapReadyCallback {
             }
         });
         request.add(jsonObjectRequest);
+    }
+
+    // Método para obtener la ubicación de los demás chefs
+    private void obtenerUbicacionChefs(GoogleMap googleMap) {
+
+        final GoogleMap mMap = googleMap;
+
+        // Creamos un string con el url del servidor con los datos usuario
+        String url = "http://192.168.1.52/recetas/api.php";
+
+        jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+
+            // Método que nos muestra en caso de que la respuesta este correcta
+            @Override
+            public void onResponse(JSONArray response) {
+
+                try {
+
+                    // Vamos añadiendo cada usuario en el array
+                    for(int i = 0; i < response.length(); i++) {
+
+                        JSONObject objeto = response.getJSONObject(i);
+
+                        // Obtenemos todos los datos del usuario
+                        String user = objeto.getString("username");
+                        double lat  = objeto.getDouble("latitud");
+                        double lon  = objeto.getDouble("longitud");
+                        String mail = objeto.getString("email");
+                        String telf = objeto.getString("telefono");
+
+                        LatLng ubi = new LatLng(lat, lon);
+                        mMap.addMarker(new MarkerOptions().position(ubi).title("Chef " + user));
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        }, new Response.ErrorListener() {
+            // Método que nos muestra en caso de error
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), "ERROR AL LEER LOS DATOS", Toast.LENGTH_SHORT).show();
+            }
+        });
+        request.add(jsonArrayRequest);
     }
 }
