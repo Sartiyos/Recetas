@@ -6,12 +6,12 @@ public class Receta {
     private int idReceta;
     private String nombreReceta;
     private String categoriaReceta;
-    private String dificultadReceta;
+    private float dificultadReceta;
     private String uriReceta;
     private String pdfReceta;
 
     // Constructor de la clase
-    public Receta(int id, String nombre, String categ, String loc, String dificul, String pdf) {
+    public Receta(int id, String nombre, String categ, String loc, float dificul, String pdf) {
         this.idReceta = id;
         this.nombreReceta = nombre;
         this.categoriaReceta = categ;
@@ -46,11 +46,11 @@ public class Receta {
         this.categoriaReceta = categoriaReceta;
     }
 
-    public String getDificultadReceta() {
+    public float getDificultadReceta() {
         return dificultadReceta;
     }
 
-    public void setDificultadReceta(String dificultadReceta) {
+    public void setDificultadReceta(float dificultadReceta) {
         this.dificultadReceta = dificultadReceta;
     }
 

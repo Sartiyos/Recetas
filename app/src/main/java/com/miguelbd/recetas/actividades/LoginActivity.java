@@ -5,6 +5,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -39,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Obtenemos el control del teclado
+        final InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
+
         // Relacionamos los atributos con los elementos del XML
         edtUsuario = (EditText) findViewById(R.id.edtUser);
         edtPassword = (EditText) findViewById(R.id.edtPasswd);
@@ -51,6 +55,11 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Ocultamos el teclado cuando pulsemos el botón Login
+                inputMethodManager.hideSoftInputFromWindow(btnLogin.getWindowToken(), 0);
+
+                // Cargamos el WebService
                 cargarWebService(v);
             }
         });
@@ -59,6 +68,10 @@ public class LoginActivity extends AppCompatActivity {
         txtRegistrarse.setOnClickListener(new TextView.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Ocultamos el teclado cuando pulsemos el botón Login
+                inputMethodManager.hideSoftInputFromWindow(btnLogin.getWindowToken(), 0);
+
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }

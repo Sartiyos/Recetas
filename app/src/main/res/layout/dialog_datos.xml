@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -14,7 +14,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/colorFondo"
+        android:background="@color/colorCampos"
         android:orientation="vertical"
         android:padding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,58 +24,117 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.498">
 
-        <EditText
-            android:id="@+id/edtNewNombre"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:ems="10"
-            android:hint="@string/regNombre"
-            android:inputType="none" />
+            android:layout_height="match_parent"
+            android:fontFamily="@font/karla"
+            android:textColorHint="@color/colorBtnPulsado">
 
-        <EditText
-            android:id="@+id/edtNewApellidos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:ems="10"
-            android:hint="@string/regApellidos"
-            android:inputType="none" />
+            <EditText
+                android:id="@+id/edtNewNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/campos"
+                android:ems="10"
+                android:hint="@string/regNombre"
+                android:inputType="none"
+                android:singleLine="true" />
 
-        <EditText
-            android:id="@+id/edtNewEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:ems="10"
-            android:hint="@string/regEmail"
-            android:inputType="none" />
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/edtNewFecha"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:ems="10"
-            android:hint="@string/regFecha"
-            android:inputType="none" />
+            android:layout_height="match_parent"
+            android:fontFamily="@font/karla"
+            android:textColorHint="@color/colorBtnPulsado">
 
-        <EditText
-            android:id="@+id/edtNewTelefono"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:ems="10"
-            android:hint="@string/regTelefono"
-            android:inputType="none" />
+            <EditText
+                android:id="@+id/edtNewApellidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/campos"
+                android:ems="10"
+                android:hint="@string/regApellidos"
+                android:inputType="none"
+                android:singleLine="true" />
 
-        <Button
-            android:id="@+id/btnModificar"
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorBtnPulsado"
-            android:text="@string/btnModificar"
-            android:textColor="@android:color/white" />
+            android:layout_height="match_parent"
+            android:fontFamily="@font/karla"
+            android:textColorHint="@color/colorBtnPulsado">
+
+            <EditText
+                android:id="@+id/edtNewEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/campos"
+                android:ems="10"
+                android:hint="@string/regEmail"
+                android:inputType="none"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/karla"
+            android:textColorHint="@color/colorBtnPulsado">
+
+            <EditText
+                android:id="@+id/edtNewFecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/campos"
+                android:ems="10"
+                android:hint="@string/regFecha"
+                android:inputType="none"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/karla"
+            android:textColorHint="@color/colorBtnPulsado">
+
+            <EditText
+                android:id="@+id/edtNewTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/campos"
+                android:ems="10"
+                android:hint="@string/regTelefono"
+                android:inputType="none"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/karla"
+            android:textColorHint="@color/colorBtnPulsado">
+
+            <Button
+                android:id="@+id/btnModificar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/botones"
+                android:text="@string/btnModificar"
+                android:textColor="@android:color/white" />
+
+        </android.support.design.widget.TextInputLayout>
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

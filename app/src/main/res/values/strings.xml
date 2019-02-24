@@ -8,6 +8,7 @@
     <string name="signin">REGISTRARSE</string>
 
     <string name="title_activity_main">MainActivity</string>
+    <string name="mFiltro">Filtrar</string>
 
     <string name="receta">Recetas</string>
     <string name="ubicacion">Cocineros</string>
@@ -38,8 +39,9 @@
     <string name="newPass2">Repite nueva contraseña</string>
     <string name="btnModificar">Modificar</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <!-- String para filtrar recetas -->
+    <string name="recPrincipal">Plato principal</string>
+    <string name="recPostre">Postre</string>
+    <string name="btnAceptar">Aceptar</string>
 
 </resources>

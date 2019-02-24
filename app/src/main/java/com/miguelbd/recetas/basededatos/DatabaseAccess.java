@@ -59,7 +59,35 @@ public class DatabaseAccess {
                         c.getString(1),
                         c.getString(2),
                         c.getString(3),
-                        c.getString(4),
+                        c.getFloat(4),
+                        c.getString(5)));
+            } while (c.moveToNext());
+        }
+
+        return listadoRecetas;
+    }
+
+    // Método que nos devuelve las recetas de un tipo
+    public ArrayList<Receta> obtenerRecetaFiltro(String filtro) {
+
+        //Converitmos en String en un Array String
+        String recetaFiltro[] = new String[]{String.valueOf(filtro)};
+
+        Cursor c;
+        ArrayList<Receta> listadoRecetas = new ArrayList<>();
+
+        // Consultamos a la Base de Datos y guardamos el resultado en el Cursor
+        c = database.rawQuery("SELECT * FROM Recetas WHERE CategoriaReceta = ?", recetaFiltro);
+
+        if (c.moveToFirst()) { // Nos colocamos al principio del Cursor
+
+            do { // Vamos añadiendo al ArrayList las Recetas con sus valores
+                listadoRecetas.add(new Receta(
+                        c.getInt(0),
+                        c.getString(1),
+                        c.getString(2),
+                        c.getString(3),
+                        c.getFloat(4),
                         c.getString(5)));
             } while (c.moveToNext());
         }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.miguelbd.recetas.R;
@@ -43,7 +44,8 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder>
     public void onBindViewHolder(Adaptador.ViewHolder viewHolder, int i) {
         viewHolder.imagen.setImageURI(Uri.parse(listadoRecetas.get(i).getUriReceta()));
         viewHolder.nombreReceta.setText(listadoRecetas.get(i).getNombreReceta());
-        viewHolder.dificultadReceta.setText(listadoRecetas.get(i).getDificultadReceta());
+        viewHolder.dificultad.setNumStars(3);
+        viewHolder.dificultad.setRating(listadoRecetas.get(i).getDificultadReceta());
     }
 
     // Método que define la cantidad de elementos del RecyclerView
@@ -70,7 +72,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder>
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imagen;
         TextView nombreReceta;
-        TextView dificultadReceta;
+        RatingBar dificultad;
 
         //Aquí hacemos referencia a los objetos del XML
         public ViewHolder(View itemView) {
@@ -78,7 +80,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder>
 
             imagen = (ImageView) itemView.findViewById(R.id.imgReceta);
             nombreReceta = (TextView) itemView.findViewById(R.id.txvNombreReceta);
-            dificultadReceta = (TextView) itemView.findViewById(R.id.txvDificultadReceta);
+            dificultad = (RatingBar) itemView.findViewById(R.id.dificultad);
         }
     }
 }

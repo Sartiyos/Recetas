@@ -30,16 +30,19 @@
         android:layout_marginLeft="140dp"
         android:layout_marginTop="10dp"
         android:text="TextView"
+        android:textSize="18sp"
         card_view:fontFamily="@font/karla" />
 
-    <TextView
-        android:id="@+id/txvDificultadReceta"
+    <RatingBar
+        android:id="@+id/dificultad"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
+        android:layout_height="45dp"
         android:layout_marginLeft="140dp"
-        android:layout_marginTop="90dp"
-        android:text="TextView"
-        card_view:fontFamily="@font/karla" />
+        android:layout_marginTop="67dp"
+        android:isIndicator="true"
+        android:numStars="3"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:transformPivotX="0dp" />
 
 </android.support.v7.widget.CardView>

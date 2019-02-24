@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#F5E448</color>
-    <color name="colorPrimaryDark">#258FAA</color>
-    <color name="colorAccent">#f5e448</color>
 
-    <color name="colorFondo">#EEEEEE</color>
-    <color name="colorCampos">#D3D3D3</color>
-    <color name="colorBtnPulsado">#299FBC</color>
+    <color name="colorPrimary">#69B5D5</color>
+    <color name="colorPrimaryDark">#258FAA</color>
+    <color name="colorAccent">#E86560</color>
+
+    <color name="colorFondo">#69B5D5</color>
+    <color name="colorCampos">#FBE55C</color>
+    <color name="colorBtnPulsado">#69B5D5</color>
 </resources>

@@ -1,10 +1,12 @@
 package com.miguelbd.recetas.fragmentos;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +52,9 @@ public class PerfilFragment extends Fragment implements PasswordDialog.interface
 
         // Inflamos la vista
         view = inflater.inflate(R.layout.fragment_perfil, container, false);
+
+        // Ocultamos el toolbar
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
         request = Volley.newRequestQueue(getContext());
 
