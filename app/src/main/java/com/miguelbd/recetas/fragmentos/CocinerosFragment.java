@@ -5,10 +5,8 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -29,10 +27,13 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.miguelbd.recetas.R;
-import com.miguelbd.recetas.clases.Usuario;
+import com.miguelbd.recetas.clases.InfoWindow;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -75,8 +76,6 @@ public class CocinerosFragment extends Fragment implements OnMapReadyCallback {
         //Cargamos el mapa en el fragment map
         getChildFragmentManager().beginTransaction().replace(R.id.map, mapFragment).commit();
 
-
-
         return view;
     }
 
@@ -98,21 +97,12 @@ public class CocinerosFragment extends Fragment implements OnMapReadyCallback {
 
             // Acercamos la camara a la posición del usuario
             LatLng ubi = new LatLng(latitude, longitude);
-            googleMap.addMarker(new MarkerOptions().position(ubi).title("Chef " + nombreUsuario));
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubi, 15)); // Zoom del mapa
 
             // Actualizamos los datos del usuario en la base de datos externa
             actualizarDatosGPS(nombreUsuario);
 
             obtenerUbicacionChefs(mMap);
-            // Mostramos en el mapa la ubicación de los demás usuarios
-            /*for(int i = 0; i < usuario.length; i++) {
-                if(usuario[i].getUsuario() != nombreUsuario) {
-                    ubi = new LatLng(usuario[i].getLatitud(), usuario[i].getLongitud());
-                    googleMap.addMarker(new MarkerOptions().position(ubi).title("Chef " + usuario[i].getUsuario()));
-                }
-            }*/
-
         }
     }
 
@@ -187,7 +177,12 @@ public class CocinerosFragment extends Fragment implements OnMapReadyCallback {
                         String telf = objeto.getString("telefono");
 
                         LatLng ubi = new LatLng(lat, lon);
-                        mMap.addMarker(new MarkerOptions().position(ubi).title("Chef " + user));
+                        mMap.addMarker(new MarkerOptions()
+                            .position(ubi)
+                            .title("Chef " + user)
+                            .snippet("Teléfono " + telf + "\nEmail " + mail));
+
+                        mMap.setInfoWindowAdapter(new InfoWindow(getLayoutInflater()));
 
                     }
 
