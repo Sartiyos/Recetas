@@ -27,10 +27,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.miguelbd.recetas.R;
 import com.miguelbd.recetas.clases.InfoWindow;
@@ -95,12 +92,12 @@ public class CocinerosFragment extends Fragment implements OnMapReadyCallback {
             longitude = location.getLongitude();
             latitude  = location.getLatitude();
 
+            // Actualizamos los datos del usuario en la base de datos externa
+            actualizarDatosGPS(nombreUsuario);
+
             // Acercamos la camara a la posición del usuario
             LatLng ubi = new LatLng(latitude, longitude);
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubi, 15)); // Zoom del mapa
-
-            // Actualizamos los datos del usuario en la base de datos externa
-            actualizarDatosGPS(nombreUsuario);
 
             obtenerUbicacionChefs(mMap);
         }
@@ -176,13 +173,19 @@ public class CocinerosFragment extends Fragment implements OnMapReadyCallback {
                         String mail = objeto.getString("email");
                         String telf = objeto.getString("telefono");
 
-                        LatLng ubi = new LatLng(lat, lon);
-                        mMap.addMarker(new MarkerOptions()
-                            .position(ubi)
-                            .title("Chef " + user)
-                            .snippet("Teléfono " + telf + "\nEmail " + mail));
+                        user = user.toLowerCase();
 
-                        mMap.setInfoWindowAdapter(new InfoWindow(getLayoutInflater()));
+                        if(!user.equals(nombreUsuario.toLowerCase())) {
+
+                            LatLng ubi = new LatLng(lat, lon);
+                            mMap.addMarker(new MarkerOptions()
+                                    .position(ubi)
+                                    .title("Chef " + user)
+                                    .snippet("Teléfono " + telf + "\nEmail " + mail));
+
+                            mMap.setInfoWindowAdapter(new InfoWindow(getLayoutInflater()));
+
+                        }
 
                     }
 
